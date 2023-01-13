@@ -1,0 +1,44 @@
+body {
+  font-family: "Poppins", "Hind Siliguri", sans-serif;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.breadcumb-bg {
+  background-color: #0c0c2d5d;
+  color: #fff;
+}
+
+.tab-btn{
+  transition: all ease .4s;
+  -webkit-transition: all ease .4s;
+  -moz-transition: all ease .4s;
+  -ms-transition: all ease .4s;
+  -o-transition: all ease .4s;
+}
+.active{
+  background-color: black !important;
+  color: white !important;
+ 
+ 
+}
+
+.tabContent{
+  display: none;
+  transition: all ease .40s;
+  -webkit-transition: all ease .40s;
+  -moz-transition: all ease .40s;
+  -ms-transition: all ease .40s;
+  -o-transition: all ease .40s;
+}
+.showContent{
+  display: block;
+}
