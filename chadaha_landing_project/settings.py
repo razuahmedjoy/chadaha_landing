@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 from decouple import config
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 
 ALLOWED_HOSTS = ["*"]
@@ -129,11 +129,13 @@ STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
 
 if DEBUG:
-    STATIC_ROOT=os.path.join(BASE_DIR,"../static")
-    MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
-else:
     STATIC_ROOT = "static/"
     MEDIA_ROOT = "media/"
+    
+else:
+    STATIC_ROOT=os.path.join(BASE_DIR,"static")
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
 
 STATICFILES_DIRS = [
     'home_app/static'
