@@ -18,9 +18,7 @@ from django.http import HttpResponse
 from django.urls import path,include
 from .views import *
 
-def single_donation(request,pk):
-    # print(pk)
-    return HttpResponse('hello world')
+
 
 urlpatterns = [
     path('', home, name='home'),   

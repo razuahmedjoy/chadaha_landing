@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %} 
+{% load humanize_number %}
+{% load humanize %}
+{% block body %}
+<div class="container mx-auto px-2 md:px-28 my-12">
+    <div class="grid grid-cols-5 gap-4">
+      <div class="col-span-5 lg:col-span-4">
+        <img src="{{donation.get_image_url}}" class="w-full max-h-[450px] ">
+        <div class="donation details card p-4 border bg-white rounded-none">
+            <p>{{donation.category}}</p>
+            <h1 class="text-2xl font-medium mt-2">{{donation.title}}</h1>
+            <div class="mt-5">
+                <div class="flex justify-between">
+                    <div class="goals">
+                        <h3 class="text-sm">Goals</h3>
+                        <h5 class="font-bold text-blue-600">{{donation.target_amount|humanize_number}}</h5>
+                    </div>
+                    <div class="collected">
+                        <h3 class="text-sm">Collected</h3>
+                        <h5 class="font-bold text-green-600">{{donation.collected_amount|humanize_number}}</h5>
+                    </div>
+                    <div class="remaining">
+                        <h3 class="text-sm">Remaining</h3>
+                        <h5 class="font-bold text-yellow-500">{{donation.remaining_amount|humanize_number}}</h5>
+                    </div>
+                </div>
+                
+                    
+                
+            </div>
+        </div>
+      </div>
+      <div class="bg-white rounded-lg p-4 col-span-5 lg:col-span-1">
+        <h2 class="text-lg font-medium mb-2">Related Donations</h2>
+        <div class="grid grid-cols-1 gap-4">
+          <div class="">
+            <img src="http://127.0.0.1:8000/media/donation_campaign/cause1.jpg" class="w-full rounded-lg">
+            <h3 class="text-base font-medium bottom-0 left-0 m-2">Related post 1</h3>
+          </div>
+          
+         
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock body %}

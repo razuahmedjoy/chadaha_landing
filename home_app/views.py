@@ -32,3 +32,21 @@ def our_team_single(request,pk):
     
     return render(request, 'our_team_single.html',context)
 
+
+def all_donation(request):
+    context = {}
+  
+   
+    context['donation_categories'] = DonationCategory.objects.all()
+
+    return render(request, 'all_donation.html',context)
+
+def single_donation(request,pk):
+    context = {}
+    try:
+        context['donation'] = DonationCampaign.objects.get(id=pk)
+    except:
+        return redirect("all_donation")
+        
+    
+    return render(request, 'single_donation.html',context)
