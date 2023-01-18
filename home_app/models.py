@@ -85,6 +85,12 @@ class OurTeam(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return "{% static 'images/placeholder.jpeg' %}"
 
 
 class Gallery(models.Model):

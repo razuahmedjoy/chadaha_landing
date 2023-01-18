@@ -7,4 +7,8 @@ admin.site.register(HomeBanner)
 admin.site.register(Projects)
 admin.site.register(DonationCategory)
 admin.site.register(DonationCampaign)
-admin.site.register(OurTeam)
+
+class OurTeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'designation', 'image')
+ 
+admin.site.register(OurTeam,OurTeamAdmin)

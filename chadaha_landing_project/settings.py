@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     'home_app',
+    'active_link',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +147,4 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ACTIVE_LINK_STRICT=True

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 from .models import HomeBanner, Projects, DonationCategory, DonationCampaign, OurTeam
@@ -15,8 +15,20 @@ def home(request):
 
 def about_us(request):
     context = {}
-    return render(request, 'hello world',context)
+    return render(request, 'about.html',context)
 
 def our_team(request):
     context = {}
-    return render(request, 'hello world',context)
+    context['our_team'] = OurTeam.objects.all()
+    
+    return render(request, 'our_team.html',context)
+
+def our_team_single(request,pk):
+    context = {}
+    try:
+        context['team_member'] = OurTeam.objects.get(id=pk)
+    except:
+        return redirect('our_team')
+    
+    return render(request, 'our_team_single.html',context)
+

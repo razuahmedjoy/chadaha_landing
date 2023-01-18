@@ -47,10 +47,12 @@
     {% include "components/header.html" %}
 
     {% endblock header %}
+    <div class="min-h-[calc(80vh)]">
 
-    {% block body %}
-
-    {% endblock body %}
+        {% block body %}
+        
+        {% endblock body %}
+    </div>
 
 
     {% block footer %}
@@ -63,6 +65,9 @@
 
 
     {% block footerscript %}
+    <script>
+        feather.replace()
+    </script>
 
     {% endblock footerscript %}
 

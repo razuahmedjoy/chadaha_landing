@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block body %}
+
+<!-- our team section -->
+<section id="our-team" class="mb-12">
+    <div class="our-team">
+        <h2 class="text-lg md:text-2xl text-center my-5">Our Team</h2>
+
+        <div class="container mx-auto px-2 md:px-12">
+            <!-- our team members card -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-4">
+
+               {% for member in our_team %}
+               <div class="card border rounded-sm shadow-md">
+                    <a href="{% url 'our_team_single' member.id %}">
+                        <div class="card-image border">
+                            <img class="img-fuild w-full h-52 max-h-64  object-cover" src="{{member.get_image_url}}" alt="{{member.name}}" />
+                        </div>
+                        <div class="card-text p-2 text-center">
+                            <h3 class="font-bold text-lg">{{member.name}}</h3>
+                            <p class="font-medium">{{member.designation}}</p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+              
+            </div>
+        </div>
+    </div>
+</section>
+<!-- our team section -->
+
+{% endblock body %}

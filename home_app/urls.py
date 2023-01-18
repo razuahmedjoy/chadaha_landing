@@ -19,13 +19,15 @@ from django.urls import path,include
 from .views import *
 
 def single_donation(request,pk):
-    print(pk)
+    # print(pk)
     return HttpResponse('hello world')
 
 urlpatterns = [
     path('', home, name='home'),   
-    path('about-us/', home, name='about_us'),   
+    path('about-us/', about_us, name='about_us'),   
     path('our-team/', our_team, name='our_team'),   
+    path('our-team/<int:pk>', our_team_single, name='our_team_single'),   
+    path('donation/', all_donation, name='all_donation'),
     path('donation/<int:pk>/', single_donation, name='single_donation'),
 ]
 

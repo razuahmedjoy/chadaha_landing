@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load active_link_tags %}
 <div class="navbar bg-base-100 shadow-lg md:px-24">
     <div class="navbar-start">
         
@@ -8,8 +8,9 @@
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul tabindex="0" class="menu menu-horizontal p-0 z-50">
-            <li><a href="{% url 'about_us' %}">আমাদের সম্পর্কে</a></li>
-            <li><a href="{% url 'our_team' %}">টিম</a></li>
+            <li><a href="{% url 'home' %}" class="{% active_link 'home' %}">Home</a></li>
+            <li><a href="{% url 'about_us' %}" class="{% active_link 'about_us' %}">আমাদের সম্পর্কে</a></li>
+            <li><a href="{% url 'our_team' %}" class="{% active_link 'our_team' %}">টিম</a></li>
             <li><a href="{% url 'home' %}">সীকিং ফর হেল্প</a></li>
             <li><a href="{% url 'home' %}">ছবিঘর</a></li>
          
