@@ -63,6 +63,9 @@ class DonationCampaign(models.Model):
             return amount
         else:
             return 0
+    def collected_percent(self):
+        percent = (self.collected_amount / self.target_amount)*100
+        return percent
             
     def get_image_url(self):
         if self.image:
