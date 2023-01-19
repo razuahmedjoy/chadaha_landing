@@ -5,12 +5,44 @@
 
 {%block headerlinks %}
 <link rel="stylesheet" href="{% static 'css/jquery.rprogessbar.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
 {%endblock headerlinks %}
+
+{% block headerstyle %}
+<style>
+  .owl-nav button {
+    position: absolute;
+    top: 50%;
+    padding: .45rem .80rem !important;
+    
+    background: #1b1b1b54 !important;
+    border-radius: 50%;
+    color: white !important;
+}
+  .owl-prev {
+      left: 15px;
+  }
+  .owl-next {
+
+    right: 15px;
+ 
+}
+</style>
+{% endblock headerstyle %}
+
 {% block body %}
 <div class="container mx-auto px-2 md:px-28 my-12">
   <div class="grid grid-cols-5 gap-4">
     <div class="col-span-5 lg:col-span-4">
+     <div class="owl-carousel">
       <img src="{{donation.get_image_url}}" class="w-full max-h-[450px]" />
+      {% for image in donation.donationimages_set.all %}
+      <img src="{{image.get_image_url}}" class="w-full max-h-[450px]" />
+      {% endfor %}
+      
+   
+     </div>
       <div class="donation details card p-4 border bg-white rounded-none">
         <p>{{donation.category}}</p>
         <h1 class="text-2xl font-medium mt-2">{{donation.title}}</h1>
@@ -78,7 +110,22 @@
 
 <script src="{% static 'js/jQuery.rProgressbar.min.js' %}"></script>
 <script src="{% static 'js/jquery.waypoints.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
 <script>
+  $('.owl-carousel').owlCarousel({
+    items:1,
+    margin:10,
+    loop:true,
+    autoplay:true,
+    autoplayTimeout:4000,
+    autoplayHoverPause:true,
+    nav:true,
+    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+   
+
+    
+  });
+
     const goal = "{{donation.collected_percent}}";
   $(".jqueryscript").rProgressbar({
     percentage: parseInt(goal),

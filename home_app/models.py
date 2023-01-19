@@ -73,7 +73,19 @@ class DonationCampaign(models.Model):
         else:
             return 'https://via.placeholder.com/300x300'
 
+class DonationImages(models.Model):
+    image = models.ImageField(upload_to='donation_images', blank=True, null=True)
+    donation_campaign = models.ForeignKey(DonationCampaign, on_delete=models.CASCADE, blank=True, null=True)
 
+    def __str__(self):
+        return str(self.id)
+    
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return 'https://via.placeholder.com/300x300'
+    
 class OurTeam(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     designation = models.CharField(max_length=100, blank=True, null=True)
