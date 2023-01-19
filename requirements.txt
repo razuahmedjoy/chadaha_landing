@@ -1,5 +1,7 @@
 asgiref==3.5.2
 django-active-link==0.1.8
+django-ckeditor==6.5.1
+django-js-asset==2.0.0
 Pillow==9.4.0
 python-decouple==3.7
 sqlparse==0.4.3
