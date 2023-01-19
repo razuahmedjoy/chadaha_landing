@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
-from .models import HomeBanner, Projects, DonationCategory, DonationCampaign, OurTeam
+from .models import *
 
 def home(request):
     context = {}
@@ -19,7 +19,7 @@ def about_us(request):
 
 def our_team(request):
     context = {}
-    context['our_team'] = OurTeam.objects.all()
+    context['team_category'] = TeamCategory.objects.all()
     
     return render(request, 'our_team.html',context)
 
@@ -45,6 +45,7 @@ def single_donation(request,pk):
     context = {}
     try:
         context['donation'] = DonationCampaign.objects.get(id=pk)
+        context['websettings'] = WebSettings.objects.last()
     except:
         return redirect("all_donation")
         

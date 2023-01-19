@@ -52,19 +52,26 @@
 <section class="hero-banner-area">
   <div class="hero-sliders overflow-hidden">
     {% for slide in sliders %}
+    <a href="{{slide.link|default_if_none:'#'}}">
     <div
       class="w-full h-fit py-20 md:py-64 text-white flex justify-center text-xl slides relative"
       style="background-image: url('{{slide.banner_image.url}}');"
     >
-      <div class="overlay absolute w-full h-full top-0 left-0"></div>
+      <div class="overlay absolute w-full h-full top-0 left-0">
+     
+      </div>
       <div class="text-white md:w-[60%] h-full relative pl-5 md:pl-36"></div>
     </div>
+       </a>
+    
 
     {%endfor %}
   </div>
 </section>
 <!-- slider area -->
-
+<marquee class="bg-[#1abc9c] mx-auto p-2 text-white font-medium w-full md:px-16" direction="left">
+  শীঘ্রই শুভ উদ্বোধন হতে যাচ্ছে দেশের গ্রামীণ স্বাস্থ্যসেবায় যুগান্তকারী উদ্যোগ ভিলেজ কেয়ার
+</marquee>
 <!-- project icon section -->
 
 <section class="my-5 md:my-10">
@@ -75,15 +82,19 @@
         <div class="rounded-lg p-4 cursor-pointer">
           <div class="flex flex-col items-center justify-center">
             <div class="w-full mb-5 mx-auto">
-              <img src="{{project.image.url}}" class="img-fluid mx-auto" alt="" />
+              <a href="{{project.link|default_if_none:'#'}}">
+
+                <img src="{{project.image.url}}" class="img-fluid mx-auto md:w-20 md:h-20" alt="" />
+              </a>
             </div>
-       
+            <a href="{{project.link|default_if_none:'#'}}">
               <p
                
-                class="text-gray-900 text-center text-lg font-medium mb-3"
+                class="text-gray-900 text-center text-sm md:text-lg font-medium mb-3"
               >
                 {{project.name}}
               </p>
+            </a>
         
           </div>
         </div>
@@ -93,6 +104,7 @@
     </div>
   </div>
 </section>
+
 
 <!-- project icon section -->
 
@@ -141,15 +153,15 @@
                                 <div class="mt-5">
                                     <div class="flex justify-between">
                                         <div class="goals">
-                                            <h3 class="text-sm">Goals</h3>
+                                            <h3 class="text-sm">মোট প্রয়োজন</h3>
                                             <h5 class="font-bold text-blue-600">{{donation.target_amount|humanize_number}}</h5>
                                         </div>
                                         <div class="collected">
-                                            <h3 class="text-sm">Collected</h3>
+                                            <h3 class="text-sm">সংগৃহীত</h3>
                                             <h5 class="font-bold text-green-600">{{donation.collected_amount|humanize_number}}</h5>
                                         </div>
                                         <div class="remaining">
-                                            <h3 class="text-sm">Remaining</h3>
+                                            <h3 class="text-sm">আরও বাকি</h3>
                                             <h5 class="font-bold text-yellow-500">{{donation.remaining_amount|humanize_number}}</h5>
                                         </div>
                                     </div>
@@ -205,12 +217,12 @@
     speed: 500,
     autoplay: true,
     autoplaySpeed: 2000,
-    dots: true,
-    arrows: true,
+ 
+
   });
   $(".project-slider").slick({
     infinite: true,
-    slidesToShow: 6,
+    slidesToShow: 8,
     slidesToScroll: 1,
 
     speed: 5000,
@@ -218,6 +230,7 @@
     autoplaySpeed: 50,
     infinite: true,
     arrows: true,
+    
 
     responsive: [
       {
@@ -239,7 +252,7 @@
       {
         breakpoint: 480,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 4,
           slidesToScroll: 1,
         },
       },

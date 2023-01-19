@@ -19,6 +19,11 @@ class DonationAdmin(admin.ModelAdmin):
 admin.site.register(DonationCampaign,DonationAdmin)
 
 class OurTeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'designation', 'image')
+    list_display = ('name','team_category','serial_no')
+    list_editable = ('team_category','serial_no')
+    list_filter = ('team_category',)
+
  
 admin.site.register(OurTeam,OurTeamAdmin)
+admin.site.register(TeamCategory)
+admin.site.register(WebSettings)

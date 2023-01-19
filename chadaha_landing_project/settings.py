@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'home_app',
     'active_link',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

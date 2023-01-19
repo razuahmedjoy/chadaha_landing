@@ -1,14 +1,14 @@
 from django.db import models
-
+from ckeditor.fields import RichTextField
 # Create your models here.
 class HomeBanner(models.Model):
 
     banner_image = models.ImageField(upload_to='home_banner', blank=True, null=True)
     banner_title = models.CharField(max_length=100, blank=True, null=True)
     serial_no = models.IntegerField(blank=True, null=True)
-
+    link = models.URLField(max_length=200, blank=True, null=True, default="#")
     def __str__(self):
-        return str(self.id)
+        return f"Banner- {self.id}"
     
     def get_image_url(self):
         if self.banner_image:
@@ -44,12 +44,12 @@ class DonationCategory(models.Model):
 
 class DonationCampaign(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
+    description = RichTextField(blank=True, null=True)
     image = models.ImageField(upload_to='donation_campaign', blank=True, null=True)
     target_amount = models.IntegerField(blank=True, null=True)
     collected_amount = models.IntegerField(blank=True, null=True)
     category = models.ForeignKey(DonationCategory, on_delete=models.CASCADE, blank=True, null=True)
-    donating_account_info = models.TextField(blank=True, null=True)
+    donating_account_info = RichTextField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -85,10 +85,24 @@ class DonationImages(models.Model):
             return self.image.url
         else:
             return 'https://via.placeholder.com/300x300'
-    
+
+
+class TeamCategory(models.Model):
+    title = models.CharField(max_length=100, blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+
 class OurTeam(models.Model):
+    class Meta:
+        ordering = ['serial_no']
+
     name = models.CharField(max_length=100, blank=True, null=True)
-    designation = models.CharField(max_length=100, blank=True, null=True)
+    team_category = models.ForeignKey(TeamCategory, on_delete=models.CASCADE,null=True,blank=True)
     image = models.ImageField(upload_to='our_team', blank=True, null=True)
     email = models.EmailField(max_length=100, blank=True, null=True)
     contact_no = models.CharField(max_length=13, blank=True, null=True)
@@ -97,6 +111,8 @@ class OurTeam(models.Model):
     whatsapp = models.CharField(max_length=13, blank=True, null=True)
     instagram_link = models.URLField(max_length=200, blank=True, null=True)
     linkedin_link = models.URLField(max_length=200, blank=True, null=True)
+    details = RichTextField(blank=True, null=True)
+    serial_no = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -116,3 +132,12 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class WebSettings(models.Model):
+    donation_terms = RichTextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Web Settings"
+    def __str__(self):
+        return f"Web Settings-Never Delete"
