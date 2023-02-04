@@ -1,7 +1,23 @@
-{% extends 'base.html' %}
-{% load static %} 
+{% extends 'base.html' %} {% load static %} {% block body %}
 
-{% block body %}
+<div class="min-h-screen bg-base-200">
+  <h2 class="text-center text-2xl md:text-4xl font-bold pt-10 py-5">
+    আমাদের সম্পর্কে
+  </h2>
 
-about
+  <div class="hero">
+    <div class="hero-content flex-col lg:flex-row">
+      <img
+        src="{{websettings.get_about_image_url}}"
+        class="w-sm md:max-w-md rounded-lg shadow-2xl"
+      />
+      <div class="md:ml-10">
+        <h1 class="text-5xl font-bold">{{websettings.about_title}}</h1>
+        <p class="py-6">
+          {websettings.about_description}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock body %}

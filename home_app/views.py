@@ -17,8 +17,11 @@ def home(request):
 
 def about_us(request):
     context = {}
-    return render(request, 'about.html',context)
-
+    try:
+        context['websettings'] = WebSettings.objects.last()
+        return render(request, 'about.html',context)
+    except:
+        return redirect('home')
 def our_team(request):
     context = {}
     context['team_category'] = TeamCategory.objects.all()

@@ -159,8 +159,18 @@ class Gallery(models.Model):
 class WebSettings(models.Model):
     donation_terms = RichTextField(blank=True, null=True)
     home_headline = models.CharField(max_length=255, blank=True, null=True)
+    about_image = models.ImageField(upload_to='about_image', blank=True, null=True)
+    about_title = models.CharField(max_length=255, blank=True, null=True)
+    about_description = RichTextField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Web Settings"
     def __str__(self):
         return f"Web Settings-Never Delete"
+
+    def get_about_image_url(self):
+        if self.about_image:
+            return self.about_image.url
+        else:
+            return 'https://via.placeholder.com/300x300'
+            
