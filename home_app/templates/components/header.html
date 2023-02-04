@@ -3,17 +3,29 @@
 <div class="navbar bg-base-100 shadow-lg md:px-24">
     <div class="navbar-start">
         
-     
-        
+     <a href="/">
+        <h1 class="cursor-pointer text-2xl font-bold">Chadaha.com</h1>
+     </a>
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul tabindex="0" class="menu menu-horizontal p-0 z-50">
-            <li><a href="{% url 'home' %}" class="{% active_link 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}" class="{% active_link 'home' %}">হোম</a></li>
             <li><a href="{% url 'about_us' %}" class="{% active_link 'about_us' %}">আমাদের সম্পর্কে</a></li>
             <li><a href="{% url 'our_team' %}" class="{% active_link 'our_team' %}">টিম</a></li>
             <li><a href="{% url 'all_donation' %}" class="{% active_link 'all_donation' %}">সীকিং ফর হেল্প</a></li>
-            <li><a href="{% url 'home' %}">ছবিঘর</a></li>
-         
+          
+            <li tabIndex={0}>
+                <a className="justify-between {% active_link 'gallery' %}">
+                    ছবিঘর
+                  <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                </a>
+                <ul className="p-2" style="
+                background: white;
+            ">
+                  <li><a href="{% url 'gallery' %}?type=image">স্থিরচিত্র</a></li>
+                  <li><a href="{% url 'gallery' %}?type=video">ভিডিও</a></li>
+                </ul>
+              </li>
         </ul>
     </div>
     <div class="navbar-end">
@@ -39,7 +51,25 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
             <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 right-0">
-                <li><a href="">আমাদের সম্পর্কে</a></li>
+                <li><a href="{% url 'home' %}" class="{% active_link 'home' %}">হোম</a></li>
+                <li><a href="{% url 'about_us' %}" class="{% active_link 'about_us' %}">আমাদের সম্পর্কে</a></li>
+                <li><a href="{% url 'our_team' %}" class="{% active_link 'our_team' %}">টিম</a></li>
+                <li><a href="{% url 'all_donation' %}" class="{% active_link 'all_donation' %}">সীকিং ফর হেল্প</a></li>
+              
+                <li tabIndex={0}>
+                    <a className="justify-between">
+                        ছবিঘর
+                      <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
+                    </a>
+                    <ul className="p-2" style="
+                    background: white;
+                    left: 0;
+                    top: 100%;
+                ">
+                      <li><a href="{% url 'gallery' %}?type=image">স্থিরচিত্র</a></li>
+                      <li><a href="{% url 'gallery' %}?type=video">ভিডিও</a></li>
+                    </ul>
+                  </li>
               
           </div>
     </div>

@@ -1,13 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponse
+from django.http import JsonResponse
 
 # Create your views here.
 from .models import *
-
+from .forms import *
 def home(request):
     context = {}
     context['sliders'] = HomeBanner.objects.all()
     context['projects'] = Projects.objects.all()
     context['donation_categories'] = DonationCategory.objects.all()
+    context['websettings'] = WebSettings.objects.last()
     
     context['donation_campaigns'] = DonationCampaign.objects.all()
     return render(request, 'home.html',context)
@@ -42,12 +44,41 @@ def all_donation(request):
     return render(request, 'all_donation.html',context)
 
 def single_donation(request,pk):
+   
     context = {}
-    try:
-        context['donation'] = DonationCampaign.objects.get(id=pk)
-        context['websettings'] = WebSettings.objects.last()
-    except:
-        return redirect("all_donation")
+
+    if request.method == 'GET':
+        try:
+            context['donationForm'] = DonationRequestForm()
+            context['donation'] = DonationCampaign.objects.get(id=pk)
+            context['websettings'] = WebSettings.objects.last()
+        except:
+            return redirect("all_donation")
+            
         
-    
-    return render(request, 'single_donation.html',context)
+        return render(request, 'single_donation.html',context)
+    elif request.method == 'POST':
+        try:
+            donation_request = DonationRequestForm(request.POST)
+            if donation_request.is_valid():
+                donation_request.save()
+                return redirect(to='single_donation',pk=pk)
+        except:
+            return JsonResponse({'status':'error'})
+
+def gallery(request):
+    # contentType = request.GET.get()
+    context = {}
+    dataType = request.GET.get('type')
+
+    if dataType != 'image' and dataType != 'video':
+        return redirect('home')
+    if dataType == 'image':
+        context['gallery'] = Gallery.objects.filter(is_video=False)
+        context['title'] = 'ছবিঘর'
+    elif dataType == 'video':
+        context['gallery'] = Gallery.objects.filter(is_video=True)
+        context['title'] = 'ভিডিও'
+    return render(request, 'gallery.html',context)
+
+    # return JsonResponse({'contentType':type})

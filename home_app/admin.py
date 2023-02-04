@@ -27,3 +27,9 @@ class OurTeamAdmin(admin.ModelAdmin):
 admin.site.register(OurTeam,OurTeamAdmin)
 admin.site.register(TeamCategory)
 admin.site.register(WebSettings)
+admin.site.register(Gallery)
+
+class DonationRequestAdmin(admin.ModelAdmin):
+    list_display = ('name','amount','contact_no','address','created_at')
+    list_filter = ('created_at',)
+admin.site.register(DonationRequest,DonationRequestAdmin)

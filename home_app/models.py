@@ -124,6 +124,17 @@ class OurTeam(models.Model):
             return "{% static 'images/placeholder.jpeg' %}"
 
 
+class DonationRequest(models.Model):
+    name = models.CharField(max_length=100)
+    amount = models.IntegerField()
+    contact_no = models.CharField(max_length=13)
+    address = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
 class Gallery(models.Model):
     title = models.CharField(max_length=100, blank=True, null=True)
     image = models.ImageField(upload_to='gallery', blank=True, null=True)
@@ -132,10 +143,22 @@ class Gallery(models.Model):
 
     def __str__(self):
         return self.title
+    def gallery_image(self):
+        if self.image:
+            return self.image.url
+        else:
+            return 'https://via.placeholder.com/300x300'
+
+    def get_video_id(self):
+        if self.is_video:
+            return self.video_link.split("=")[1]
+        else:
+            return None
     
 
 class WebSettings(models.Model):
     donation_terms = RichTextField(blank=True, null=True)
+    home_headline = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Web Settings"

@@ -1,5 +1,6 @@
 {% extends 'base.html' %} 
 {% load static %} 
+{% load tailwind_filters %}
 {% load humanize_number %} 
 {% load humanize %} 
 
@@ -76,13 +77,13 @@
           <div class="jqueryscript"></div>
           <div class="details p-2 mt-5">
 
-            {{donation.description}}
+            {{donation.description|safe}}
 
           </div>
         
           <div class="donation_sending details p-2 mt-5">
             <h2 class="font-bold text-red-600 text-lg mb-4">Send your donation to the following details</h2>
-            {{donation.donating_account_info}}
+            {{donation.donating_account_info|safe}}
 
           </div>
 
@@ -98,6 +99,20 @@
                {{websettings.donation_terms|safe}}</p>
             </label>
           </label>
+
+
+          <br>
+          <button class="btn-sm btn-warning border-none mt-5">
+            অনুদান দিতে আগ্রহী
+          </button>
+
+          <div class="p-5 max-w-lg">
+            <form method="post">
+              {%csrf_token%}
+              {{donationForm|crispy}}
+              <button type="submit" class="btn btn-sm bg-[#1abc9c] border-none mt-5">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </div>

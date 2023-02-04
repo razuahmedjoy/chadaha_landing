@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<section class="my-5 md:my-12">
+  <h2 class="text-center text-4xl font-bold mb-8 md:mb-12">{{title}}</h2>
+  <!-- gallery items -->
+
+  <div class="gallery-item grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-5 gap-5">
+    {% for item in gallery %}
+
+    {% if item.is_video %}
+    <div class="w-full bg-grey-200 border">
+        <iframe class="w-full" height="240" src="https://www.youtube.com/embed/{{item.get_video_id}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+        <h2 class="caption text-center font-semibold text-md mt-2">
+          {{item.title}}
+        </h2>
+      </div>
+
+
+    {%else%}
+
+    <div class="w-full bg-grey-200 border">
+        <img
+          src="{{item.gallery_image}}"
+          alt="{{item.title}}"
+          class="w-full h-auto"
+        />
+        <h2 class="caption text-center font-semibold text-md mt-2">
+          {{item.title}}
+        </h2>
+      </div>
+
+    {%endif%}
+
+    {% endfor %}
+  </div>
+
+  <!-- gallery items -->
+</section>
+
+{% endblock body %}
