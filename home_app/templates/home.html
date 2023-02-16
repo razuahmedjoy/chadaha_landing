@@ -163,7 +163,7 @@
   <div id="tab-contents" class="my-10">
 
     {% for category in donation_categories %}
-        <div id="tab-content-{{category.id}}" class="tabContent tab-content-1 {% if forloop.first %}showContent{%endif%} bg-gray-200">
+        <div id="tab-content-{{category.id}}" class="tabContent tab-content-1 {% if forloop.first %}showContent{%endif%}">
             
             
             <div class="container mx-auto p-2 md:p-5">
@@ -185,15 +185,15 @@
                                     <div class="flex justify-between">
                                         <div class="goals">
                                             <h3 class="text-sm">মোট প্রয়োজন</h3>
-                                            <h5 class="font-bold text-blue-600">{{donation.target_amount|humanize_number}}</h5>
+                                            <h5 class="font-bold text-[#1abc9c]">{{donation.target_amount|humanize_number}}</h5>
                                         </div>
                                         <div class="collected">
                                             <h3 class="text-sm">সংগৃহীত</h3>
-                                            <h5 class="font-bold text-green-600">{{donation.collected_amount|humanize_number}}</h5>
+                                            <h5 class="font-bold text-[#1abc9c]">{{donation.collected_amount|humanize_number}}</h5>
                                         </div>
                                         <div class="remaining">
                                             <h3 class="text-sm">আরও বাকি</h3>
-                                            <h5 class="font-bold text-yellow-500">{{donation.remaining_amount|humanize_number}}</h5>
+                                            <h5 class="font-bold text-[#1abc9c]">{{donation.remaining_amount|humanize_number}}</h5>
                                         </div>
                                     </div>
                                     

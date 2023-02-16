@@ -25,8 +25,9 @@ input[type="number"] {
   -o-transition: all ease .4s;
 }
 .active{
-  background-color: black !important;
+  background-color: #1abc9c !important;
   color: white !important;
+  border: none !important;
  
  
 }

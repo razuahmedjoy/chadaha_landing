@@ -103,6 +103,7 @@ class OurTeam(models.Model):
 
     name = models.CharField(max_length=100, blank=True, null=True)
     team_category = models.ForeignKey(TeamCategory, on_delete=models.CASCADE,null=True,blank=True)
+    designation = models.CharField(max_length=100, blank=True, null=True)
     image = models.ImageField(upload_to='our_team', blank=True, null=True)
     email = models.EmailField(max_length=100, blank=True, null=True)
     contact_no = models.CharField(max_length=13, blank=True, null=True)
@@ -151,7 +152,10 @@ class Gallery(models.Model):
 
     def get_video_id(self):
         if self.is_video:
-            return self.video_link.split("=")[1]
+            try:
+                return self.video_link.split("https://youtu.be/")[1]
+            except:
+                return None
         else:
             return None
     
