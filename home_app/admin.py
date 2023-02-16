@@ -27,7 +27,12 @@ class OurTeamAdmin(admin.ModelAdmin):
 admin.site.register(OurTeam,OurTeamAdmin)
 admin.site.register(TeamCategory)
 admin.site.register(WebSettings)
-admin.site.register(Gallery)
+
+class galleryAdmin(admin.ModelAdmin):
+    list_display = ('title','is_video','video_link')
+    list_editable = ('is_video',)
+    
+admin.site.register(Gallery,galleryAdmin)
 
 class DonationRequestAdmin(admin.ModelAdmin):
     list_display = ('name','amount','contact_no','address','created_at')
