@@ -2,10 +2,16 @@
 {% load active_link_tags %}
 <div class="navbar bg-base-100 shadow-lg md:px-24">
     <div class="navbar-start">
-        
+        {% if websettings.site_logo %}
+
+        <a href="/">
+            <img src="{{websettings.get_site_logo_url}}" class="w-20 h-20" alt="">
+        </a>
+        {% else %}
      <a href="/">
         <h1 class="cursor-pointer text-2xl font-bold">Chadaha.com</h1>
      </a>
+        {% endif %}
     </div>
     <div class="navbar-center hidden lg:flex">
         <ul tabindex="0" class="menu menu-horizontal p-0 z-50">

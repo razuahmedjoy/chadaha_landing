@@ -161,6 +161,7 @@ class Gallery(models.Model):
     
 
 class WebSettings(models.Model):
+    site_logo = models.ImageField(upload_to='site_logo', blank=True, null=True)
     donation_terms = RichTextField(blank=True, null=True)
     home_headline = models.CharField(max_length=255, blank=True, null=True)
     about_image = models.ImageField(upload_to='about_image', blank=True, null=True)
@@ -177,4 +178,8 @@ class WebSettings(models.Model):
             return self.about_image.url
         else:
             return 'https://via.placeholder.com/300x300'
-            
+    def get_site_logo_url(self):
+        if self.site_logo:
+            return self.site_logo.url
+        else:
+            return 'https://via.placeholder.com/30x80'     

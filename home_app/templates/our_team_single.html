@@ -29,19 +29,7 @@
                         <div class="bg-white my-2 border p-5 w-full md:max-w-sm mx-auto shadow">
                             <h2>যোগাযোগঃ </h2>
                             <p>{{team_member.address}}</p>
-                            <div class="flex gap-x-2 my-2">
-    
-    
-                                <a href="tel:{{team_member.whatsapp|default_if_none:'#'}}"
-                                    class="text-xs p-2 bg-success cursor-pointer rounded-full flex justify-center items-centere">
-                                    <i class="text-white" width="30px" height="30px" data-feather="phone-call"></i>
-                                </a>
-                                <a href="{{team_member.facebook_link|default_if_none:'#'}}"
-                                    class="text-xs p-2 bg-info cursor-pointer rounded-full flex justify-center items-centere">
-                                    <i class="text-white" width="30px" height="30px" data-feather="facebook"></i>
-                                </a>
-    
-                            </div>
+                    
     
     
     
@@ -56,6 +44,20 @@
                         <h2 class="text-xl mb-2">সংক্ষেপে জানুন</h2>
                         <p>{{team_member.details|safe}}</p>
                     </div>
+               
+                </div>
+                <div class="flex justify-center mt-5 gap-x-2 my-2">
+    
+    
+                    <a href="tel:{{team_member.whatsapp|default_if_none:'#'}}"
+                        class="text-xs p-2 bg-success cursor-pointer rounded-full flex justify-center items-centere">
+                        <i class="text-white" width="30px" height="30px" data-feather="phone-call"></i>
+                    </a>
+                    <a href="{{team_member.facebook_link|default_if_none:'#'}}"
+                        class="text-xs p-2 bg-info cursor-pointer rounded-full flex justify-center items-centere">
+                        <i class="text-white" width="30px" height="30px" data-feather="facebook"></i>
+                    </a>
+
                 </div>
     
     
