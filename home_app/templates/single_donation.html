@@ -110,14 +110,14 @@
             <form method="post">
               {%csrf_token%}
               {{donationForm|crispy}}
-              <button type="submit" class="btn btn-sm bg-[#1abc9c] border-none mt-5">Submit</button>
+              <button type="submit" class="btn btn-sm bg-[#1abc9c] border-none mt-5">জমা দিন</button>
             </form>
           </div>
         </div>
       </div>
     </div>
     <div class="bg-white rounded-lg p-4 col-span-5 lg:col-span-1">
-      <h2 class="text-lg font-medium mb-2">Related Donations</h2>
+      <h2 class="text-lg font-medium mb-2">সম্পর্কিত পোস্ট</h2>
       <div class="grid grid-cols-1 gap-4">
         {% for item in donation.category.donationcampaign_set.all %}
         {% if item.id != donation.id %}
