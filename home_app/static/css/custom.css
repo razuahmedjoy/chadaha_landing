@@ -43,3 +43,8 @@ input[type="number"] {
 .showContent{
   display: block;
 }
+
+.slides {
+  background-size: cover !important;
+  background-position: center !important;
+}
