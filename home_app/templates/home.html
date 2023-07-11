@@ -1,8 +1,5 @@
-{% extends 'base.html' %}
-{% load humanize_number %}
-{% load humanize %}
-{% load static %} 
-{% block headerlinks %}
+{% extends 'base.html' %} {% load humanize_number %} {% load humanize %} {% load
+static %} {% block headerlinks %}
 
 <link
   rel="stylesheet"
@@ -16,9 +13,7 @@
   href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
 />
 
-{% endblock headerlinks %} 
-
-{% block headerstyle %}
+{% endblock headerlinks %} {% block headerstyle %}
 <style>
   .slides {
     background-repeat: no-repeat;
@@ -45,55 +40,55 @@
   }
 </style>
 
-{% endblock headerstyle %} 
-
-{% block body %}
+{% endblock headerstyle %} {% block body %}
 <!-- slider area -->
 <section class="hero-banner-area">
   <div class="hero-sliders overflow-hidden">
     {% for slide in sliders %}
     <a href="{{slide.link|default_if_none:'#'}}">
-    <div
-      class="w-full h-fit py-20 md:py-64 text-white flex justify-center text-xl slides relative"
-      style="background-image: url('{{slide.banner_image.url}}');"
-    >
-
-      <div class="text-white md:w-[60%] h-full relative pl-5 md:pl-36"></div>
-    </div>
-       </a>
-    
+      <div
+        class="w-full h-fit py-20 md:py-64 text-white flex justify-center text-xl slides relative"
+        style="background-image: url('{{slide.banner_image.url}}');"
+      >
+        <div class="text-white md:w-[60%] h-full relative pl-5 md:pl-36"></div>
+      </div>
+    </a>
 
     {%endfor %}
   </div>
 </section>
 <!-- slider area -->
-<marquee class="bg-[#1abc9c] mx-auto p-2 text-white font-medium w-full md:px-16" direction="left">
+<marquee
+  class="bg-[#1abc9c] mx-auto p-2 text-white font-medium w-full md:px-16"
+  direction="left"
+>
   {{websettings.home_headline}}
 </marquee>
 <!-- project icon section -->
 
 <section class="my-5 hidden md:block md:my-10">
-  <div class="container mx-auto px-2 md:px-12 lg:px-16">
-    <div class="project-slider">
+  <div class="container mx-auto px-2 md:px-20 lg:px-32">
+    <div class="project-slider grid grid-cols-4 gap-2 mx-auto">
       {% for project in projects %}
       <div class="p-4">
         <div class="rounded-lg p-4 cursor-pointer">
           <div class="flex flex-col items-center justify-center">
             <div class="w-full mb-5 mx-auto">
               <a href="{{project.link|default_if_none:'#'}}">
-
-                <img src="{{project.image.url}}" class="img-fluid mx-auto md:w-20 md:h-20" alt="" />
+                <img
+                  src="{{project.image.url}}"
+                  class="img-fluid mx-auto md:w-20 md:h-20"
+                  alt=""
+                />
               </a>
             </div>
             <a href="{{project.link|default_if_none:'#'}}">
               <p
-               
                 class="text-gray-900 text-center text-sm md:text-lg font-medium mb-3"
               >
                 {{project.name}}
               </p>
             </a>
-        
           </div>
         </div>
       </div>
@@ -112,19 +107,20 @@
           <div class="flex flex-col items-center justify-center">
             <div class="w-full mb-5 mx-auto">
               <a href="{{project.link|default_if_none:'#'}}">
-
-                <img src="{{project.image.url}}" class="img-fluid mx-auto md:w-24 md:h-24" alt="" />
+                <img
+                  src="{{project.image.url}}"
+                  class="img-fluid mx-auto md:w-24 md:h-24"
+                  alt=""
+                />
               </a>
             </div>
             <a href="{{project.link|default_if_none:'#'}}">
               <p
-               
                 class="text-gray-900 text-center text-xs md:text-lg font-medium mb-3"
               >
                 {{project.name}}
               </p>
             </a>
-        
           </div>
         </div>
       </div>
@@ -134,87 +130,14 @@
   </div>
 </section>
 
-
 <!-- project icon section -->
 
 <!-- seeking for help section -->
-<section class="my-5 md:my-16">
-
-    <h2 class="text-center text-4xl font-bold mb-8 md:mb-12">সীকিং ফর হেল্প</h2>
-  <!-- tabs -->
-
-  <div id="tabs" class="tabs w-full">
-    <div class="flex justify-center items-center gap-3 w-full flex-wrap">
-        {% for category in donation_categories %}
-      <button id="tab-{{category.id}}" class="btn tab-btn btn-sm rounded-full border-gray border-2 bg-white text-black hover:text-white {% if forloop.first %}active{% endif%}">{{category.title}}</button>
-        {%endfor%}
-     
-    </div>
-    
-
-    
-  </div>
-
-  <!-- tabs -->
-
-  <!-- tab contents -->
-  <div id="tab-contents" class="my-10">
-
-    {% for category in donation_categories %}
-        <div id="tab-content-{{category.id}}" class="tabContent tab-content-1 {% if forloop.first %}showContent{%endif%}">
-            
-            
-            <div class="container mx-auto p-2 md:p-5">
-                <div class="grid md:grid-cols-3 gap-5 p-2 m-5">
-                  {% for donation in category.donationcampaign_set.all %}
-                    <div class="bg-white rounded-lg shadow-lg">
-                        <!-- blog cards -->
-                        <div class="flex flex-col">
-                            <a href="{% url 'single_donation' pk=donation.id %}"> 
-                            <div class="w-full h-fit md:h-[300px]">
-                                <img src="{{donation.get_image_url}}" class="img-fluid w-full object-contain h-fit md:h-[300px]" alt="" />
-                            </div>
-                            </a>
-                            <div class="flex-grow p-4">
-                                <a href="{% url 'single_donation' pk=donation.id %}" class="text-gray-900 font-medium mb-3 text-green text-lg md:text-xl">{{donation.title}}</a>
-
-                                <!-- create 3 column with 3 icons and small counter -->
-                                <div class="mt-5">
-                                    <div class="flex justify-between">
-                                        <div class="goals">
-                                            <h3 class="text-sm">মোট প্রয়োজন</h3>
-                                            <h5 class="font-bold text-[#1abc9c]">{{donation.target_amount|humanize_number}}</h5>
-                                        </div>
-                                        <div class="collected">
-                                            <h3 class="text-sm">সংগৃহীত</h3>
-                                            <h5 class="font-bold text-[#1abc9c]">{{donation.collected_amount|humanize_number}}</h5>
-                                        </div>
-                                        <div class="remaining">
-                                            <h3 class="text-sm">আরও বাকি</h3>
-                                            <h5 class="font-bold text-[#1abc9c]">{{donation.remaining_amount|humanize_number}}</h5>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {%endfor%}
-                </div>
-            </div>
-       
-        </div>
-        {%endfor%}
-     
-      
-
-  </div>
-</section>
+<!-- moved to another backup folder seekingforhelp.html -->
 
 <!-- seeking for help section -->
 
-{% endblock body %} 
-{% block footerscript %}
+{% endblock body %} {% block footerscript %}
 
 <script
   type="text/javascript"
@@ -226,70 +149,64 @@
 ></script>
 
 <script>
-
-    $(".tab-btn").click(function(){
-        $(".tab-btn").removeClass("active");
-        $(this).addClass("active");
-        var tab_id = $(this).attr('id');
-        $('.tabContent.showContent').fadeOut(300, function(){
-            $(this).removeClass('showContent');
-            $("#tab-content-" + tab_id.split("-")[1]).fadeIn(300).addClass('showContent');
-        });
-        
-      
-
-    })
-
+  $(".tab-btn").click(function () {
+    $(".tab-btn").removeClass("active");
+    $(this).addClass("active");
+    var tab_id = $(this).attr("id");
+    $(".tabContent.showContent").fadeOut(300, function () {
+      $(this).removeClass("showContent");
+      $("#tab-content-" + tab_id.split("-")[1])
+        .fadeIn(300)
+        .addClass("showContent");
+    });
+  });
 
   $(".hero-sliders").slick({
     infinite: true,
     speed: 500,
     autoplay: true,
     autoplaySpeed: 2000,
- 
-
   });
-  $(".project-slider").slick({
-    infinite: true,
-    slidesToShow: 8,
-    slidesToScroll: 1,
+  // $(".project-slider").slick({
+  //   infinite: true,
+  //   slidesToShow: 8,
+  //   slidesToScroll: 1,
 
-    speed: 5000,
-    autoplay: true,
-    autoplaySpeed: 50,
-    infinite: true,
-    arrows: true,
-    
+  //   speed: 5000,
+  //   autoplay: true,
+  //   autoplaySpeed: 50,
+  //   infinite: true,
+  //   arrows: true,
 
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-          infinite: true,
-          dots: true,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ],
-  });
+  //   responsive: [
+  //     {
+  //       breakpoint: 1200,
+  //       settings: {
+  //         slidesToShow: 6,
+  //         slidesToScroll: 1,
+  //         infinite: true,
+  //         dots: true,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 768,
+  //       settings: {
+  //         slidesToShow: 4,
+  //         slidesToScroll: 2,
+  //       },
+  //     },
+  //     {
+  //       breakpoint: 480,
+  //       settings: {
+  //         slidesToShow: 4,
+  //         slidesToScroll: 1,
+  //       },
+  //     },
+  //     // You can unslick at a given breakpoint now by adding:
+  //     // settings: "unslick"
+  //     // instead of a settings object
+  //   ],
+  // });
 </script>
 
 {% endblock footerscript %}

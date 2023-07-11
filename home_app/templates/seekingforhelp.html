@@ -1,0 +1,80 @@
+<section class="my-5 md:my-16">
+    <h2 class="text-center text-4xl font-bold mb-8 md:mb-12">সীকিং ফর হেল্প</h2>
+    <!-- tabs -->
+  
+    <div id="tabs" class="tabs w-full">
+      <div class="flex justify-center items-center gap-3 w-full flex-wrap">
+        {% for category in donation_categories %}
+        <button
+          id="tab-{{category.id}}"
+          class="btn tab-btn btn-sm rounded-full border-gray border-2 bg-white text-black hover:text-white {% if forloop.first %}active{% endif%}"
+        >
+          {{category.title}}
+        </button>
+        {%endfor%}
+      </div>
+    </div>
+  
+    <!-- tabs -->
+  
+    <!-- tab contents -->
+    <div id="tab-contents" class="my-10">
+      {% for category in donation_categories %}
+      <div
+        id="tab-content-{{category.id}}"
+        class="tabContent tab-content-1 {% if forloop.first %}showContent{%endif%}"
+      >
+        <div class="container mx-auto p-2 md:p-5">
+          <div class="grid md:grid-cols-3 gap-5 p-2 m-5">
+            {% for donation in category.donationcampaign_set.all %}
+            <div class="bg-white rounded-lg shadow-lg">
+              <div class="flex flex-col">
+                <a href="{% url 'single_donation' pk=donation.id %}">
+                  <div class="w-full h-fit md:h-[300px]">
+                    <img
+                      src="{{donation.get_image_url}}"
+                      class="img-fluid w-full object-contain h-fit md:h-[300px]"
+                      alt=""
+                    />
+                  </div>
+                </a>
+                <div class="flex-grow p-4">
+                  <a
+                    href="{% url 'single_donation' pk=donation.id %}"
+                    class="text-gray-900 font-medium mb-3 text-green text-lg md:text-xl"
+                    >{{donation.title}}</a
+                  >
+  
+                  <!-- create 3 column with 3 icons and small counter -->
+                  <div class="mt-5">
+                    <div class="flex justify-between">
+                      <div class="goals">
+                        <h3 class="text-sm">মোট প্রয়োজন</h3>
+                        <h5 class="font-bold text-[#1abc9c]">
+                          {{donation.target_amount|humanize_number}}
+                        </h5>
+                      </div>
+                      <div class="collected">
+                        <h3 class="text-sm">সংগৃহীত</h3>
+                        <h5 class="font-bold text-[#1abc9c]">
+                          {{donation.collected_amount|humanize_number}}
+                        </h5>
+                      </div>
+                      <div class="remaining">
+                        <h3 class="text-sm">আরও বাকি</h3>
+                        <h5 class="font-bold text-[#1abc9c]">
+                          {{donation.remaining_amount|humanize_number}}
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </section>
